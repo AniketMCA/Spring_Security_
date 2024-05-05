@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Application Review Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Application Review Form</h2>
+        <form th:action="@{admin-page/form2}" th:object="${applicant}" method="post" enctype="multipart/form-data">
+            <label>Application Number:</label>
+            <input type="text" th:field="*{Application_No}" disabled /><br/>
+			<input type="hidden" th:field="*{id}" /><br/>
+			
+        <label>Name: </label><input type="text" th:field="*{name}" disabled/><br/>
+        <label>Date of Birth: </label><input type="date" th:field="*{dob}" disabled/><br/>
+        <label>Gender: </label>
+        <select th:field="*{gender}" disabled>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br/>
+        <label>Address: </label><input type="text" th:field="*{address}" disabled /><br/>
+			
+            <label>Action:</label>
+            <select th:field="*{action}" required>
+                <option value="">Select Action</option>
+                <option value="accept">Accept</option>
+                <option value="reject">Reject</option>
+            </select>
+
+            <label>Remark:</label>
+            <textarea th:field="*{remark}" required></textarea>
+
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+</body>
+</html>

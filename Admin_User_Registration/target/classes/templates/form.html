@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Form</h2>
+    <form th:action="@{user-page/form}" th:object="${applicant}" method="post" enctype="multipart/form-data">
+        <label>Application Number: </label><input type="text" th:field="*{Application_No}" /><br/>
+        <label>Name: </label><input type="text" th:field="*{name}" /><br/>
+        <label>Date of Birth: </label><input type="date" th:field="*{dob}" /><br/>
+        <label>Gender: </label>
+        <select th:field="*{gender}">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select><br/>
+        <label>Address: </label><input type="text" th:field="*{address}" /><br/>
+      <!--  <label>Upload Photo: </label><input type="file" name="photo" /><br/> -->
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>
